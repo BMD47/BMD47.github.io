@@ -1,0 +1,565 @@
+/*#region Colours */
+:root {
+  --rider1-color: rgb(255, 86, 86);
+  --rider2-color: rgb(161, 161, 251);
+  --rider3-color: white;
+  --rider4-color: yellow;
+  --rider1-pr-color: rgb(255, 173, 173);
+  --rider2-pr-color: rgb(167, 167, 252);
+  --rider3-pr-color: white;
+  --rider4-pr-color: rgb(252, 252, 154);
+
+  --rider-grid-margin: rgb(255,0,0);
+  --rider-grid-margin-rgb: 255,0,0;
+
+  --button-bgcolor: rgb(131, 251, 151);  
+  --grid-bgcolor: black;
+  --gen-bgcolor: white;
+  --hdr-bord-bot: grey;
+}
+/*#endregion*/
+
+/*#region Reset */
+/*#endregion*/
+/* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-width: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+/*#region General */
+* {
+  margin: 0;
+  padding: 0;
+  font-size: calc(10px + 0.7vw);
+}
+
+a {
+  text-decoration: none;
+}
+h2 {
+  font-size: 1.25rem;
+}
+input[type="radio"]  {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  height: 20px; /* or whatever */
+  width: 20px; /* or whatever */
+  border: 2px solid #999; /* or whatever */
+  border-radius: 50%; /* make it round */
+  transition: 0.2s all linear; /* just to make it change smoothly */
+}
+input[type="radio"]:checked {
+  border: 10px solid var(--rider-grid-margin); /* make it change visually when checked */
+}
+.bold {
+  font-weight: bold;
+}
+/*#endregion*/
+
+/*#region Header Navigation */
+.header{
+  border-bottom: 1px solid var(--hdr-bord-bot);
+}
+@media print {
+  .header {
+    display: none;
+  }
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+}
+.hamburger {
+  display: none;
+}
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: black;
+}
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link{
+  font-size: 1.25rem;
+  color: #000;
+  cursor: pointer;
+}
+.nav-link:hover{
+  color: var(--rider-grid-margin);
+}
+.nav-logo {
+  font-size: 1.625rem;
+  font-weight: bold;
+  color: var(--rider-grid-margin);
+  font-family: 'Segoe Print';
+}
+.nav-item {
+  padding-left: 1.5rem;
+}
+@media only screen and (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 5rem;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+  .nav-menu.active {
+      left: 0;
+  }
+  .nav-item {
+      margin: 0.5rem 0;
+      
+  }
+  .nav-link {
+    font-size: 1.75rem;
+      background-color: var(--button-bgcolor);
+  }
+  .hamburger {
+      display: block;
+      cursor: pointer;
+  }
+}
+/*#endregion*/
+
+/*#region Teams */
+.teams {
+  padding: 5px;
+  border: solid 1px var(--rider-grid-margin);
+}
+.teamss {
+  padding: 5px;
+  margin-left: 1.5em;
+  border: solid 1px var(--rider-grid-margin);
+}
+.teamss:hover {
+  background-color: rgba(var(--rider-grid-margin-rgb), 0.25);
+  opacity: 0.5;
+}
+.selteams {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.sect {
+  margin-left: 10px;
+}
+.center {
+  text-align: center;
+}
+.tm-setup {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-around; 
+  margin-right: 10px;
+}
+@media only screen and (max-width: 850px) {
+  .tm-setup {
+    flex-direction: column; 
+    row-gap: 20px;
+  }
+}
+/*#endregion*/
+
+/*#region Heat */
+.htrnum1 {grid-area: htrnum1;}
+.htrnum2 {grid-area: htrnum2;}
+.htrnum3 {grid-area: htrnum3;}
+.htrnum4 {grid-area: htrnum4;}
+.htrider1 {grid-area: htrider1;}
+.htrider2 {grid-area: htrider2;}
+.htrider3 {grid-area: htrider3;}
+.htrider4 {grid-area: htrider4;}
+.htpts1 {grid-area: htpts1;}
+.htpts2 {grid-area: htpts2;}
+.htpts3 {grid-area: htpts3;}
+.htpts4 {grid-area: htpts4;}
+.hthscr {grid-area: hthscr;}
+.htascr {grid-area: htascr;}
+.hthtot {grid-area: hthtot;}
+.htatot {grid-area: htatot;}
+.htheat-scores {
+  display: grid;
+  grid-template-areas:
+    'hthscr htascr hthtot htatot'
+    ;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  grid-gap: 5px;
+  background-color: var(--grid-bgcolor);
+  padding: 5px;
+  max-width: 900px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.htheat-container {
+  display: grid;
+  grid-template-areas:
+    'htrnum1 htrider1 htpts1  '
+    'htrnum2 htrider2 htpts2  '
+    'htrnum3 htrider3 htpts3  '
+    'htrnum4 htrider4 htpts4  '
+    ;
+  grid-template-columns: 1fr 5fr 1fr ;
+  grid-gap: 5px;
+  background-color: var(--grid-bgcolor);
+  padding: 5px;
+  max-width: 900px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.htrider1, .htrider2, .htrider3, .htrider4 {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 1.5em;
+}
+.htrnum1, .htpts1, .htrnum2, .htpts2, .htrnum3, .htpts3, .htrnum4, .htpts4 {
+  text-align: center;
+  font-size: 1.5em;
+}
+.htrider1, .htpts1, .htrnum1 {background-color: var(--rider1-color);}
+.htrider2, .htpts2, .htrnum2 {background-color: var(--rider2-color);}
+.htrider3, .htpts3, .htrnum3 {background-color: var(--rider3-color);}
+.htrider4, .htpts4, .htrnum4 {background-color: var(--rider4-color);}  
+ 
+.hthtot, .htatot, .hthscr, .htascr {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-top: 0.5em;
+  background-color: var(--gen-bgcolor);
+}    
+/*#endregion*/
+
+/*#region Main Scoresheet */
+.button-menu {
+  font-size: 1.25em;
+  border-radius: 12px;
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--button-bgcolor);
+  cursor: pointer;
+}
+.button-menu:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.54), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.ht-button1 {background-color: var(--rider1-color);} 
+.ht-button2 {background-color: var(--rider2-color);}
+.ht-button3 {background-color: var(--rider3-color);}
+.ht-button4 {background-color: var(--rider4-color);}
+.htno {grid-area: htno;}
+.time {grid-area: time;}
+.rnum1 {grid-area: rnum1;}
+.rnum2 {grid-area: rnum2;}
+.rnum3 {grid-area: rnum3;}
+.rnum4 {grid-area: rnum4;}
+.rider1 {grid-area: rider1;}
+.rider2 {grid-area: rider2;}
+.rider3 {grid-area: rider3;}
+.rider4 {grid-area: rider4;}
+.gate1 {grid-area: gate1;}
+.gate2 {grid-area: gate2;}
+.gate3 {grid-area: gate3;}
+.gate4 {grid-area: gate4;}
+.pts1 {grid-area: pts1;}
+.pts2 {grid-area: pts2;}
+.pts3 {grid-area: pts3;}
+.pts4 {grid-area: pts4;}
+.hscr {grid-area: hscr;}
+.ascr {grid-area: ascr;}
+.htot {grid-area: htot;}
+.atot {grid-area: atot;}
+.hhtno {grid-area: hhtno;}
+.hrnum {grid-area: hrnum;}
+.hgate {grid-area: hgate;}
+.hrider {grid-area: hrider;}
+.hpts {grid-area: hpts;}
+.hhscr {grid-area: hhscr;}
+.hhtot {grid-area: hhtot;}
+
+.heat-container-header {
+  display: grid;
+  grid-template-areas:
+    'hhtno hrnum hgate hrider hpts hhscr hhtot'
+    ;
+  grid-template-columns: 2fr 1fr 1fr 10fr  1fr 2fr 2fr;
+  grid-gap: 5px;
+  background-color: var(--grid-bgcolor);
+  padding: 5px;
+  max-width: 900px;
+  margin-bottom: 10px;
+}
+.heat-container {
+  display: grid;
+  grid-template-areas:
+    'htno rnum1 gate1 rider1  pts1 hscr htot'
+    'htno rnum2 gate2 rider2  pts2 hscr htot'
+    'time rnum3 gate3 rider3  pts3 ascr atot'
+    'time rnum4 gate4 rider4  pts4 ascr atot'
+    ;
+  grid-template-columns: 2fr 1fr 1fr 10fr  1fr 2fr 2fr;
+  grid-gap: 5px;
+  background-color: var(--grid-bgcolor);
+  padding: 5px;
+  max-width: 900px;
+  margin-bottom: 10px;
+}
+.rider1 {
+  background-image: linear-gradient(to right, white, var(--rider1-color));
+  text-align: left;
+  padding-left: 10px;
+}
+.rider2 {
+  background-image: linear-gradient(to right, white, var(--rider2-color));
+  text-align: left;
+  padding-left: 10px;
+}
+.rider3 {
+  background-image: linear-gradient(to right, white, var(--rider3-color));
+  text-align: left;
+  padding-left: 10px;
+}
+.rider4 {
+  background-image: linear-gradient(to right, white, var(--rider4-color));
+  text-align: left;
+  padding-left: 10px;
+}
+.htno, .htot, .atot {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-top: 0.5em;
+  background-color: var(--gen-bgcolor);
+}
+.time, .hscr, .ascr {
+  text-align: center;
+  font-size: 1.5em;
+  padding-top: 0.5em;
+  background-color: var(--gen-bgcolor);      
+}
+.time {
+  font-size: 1.25em;
+}
+.rnum1, .pts1, .gate1 {background-color: var(--rider1-color); text-align: center;}
+.rnum2, .pts2, .gate2 {background-color: var(--rider2-color); text-align: center;}
+.rnum3, .pts3, .gate3 {background-color: var(--rider3-color); text-align: center;}
+.rnum4, .pts4, .gate4 {background-color: var(--rider4-color); text-align: center;}
+.pts1, .pts2, .pts3, .pts4 {font-weight: bold;}
+.gate1, .gate2, .gate3, .gate4 {font-style: italic;}
+.hhtno, .hrnum, .hgate, .hrider,  .hpts, .hhscr, .hhtot 
+  {background-color: white; text-align: center;}
+#source {
+  display: none;
+}
+/*#endregion*/
+
+/*#region Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show
+}
+.sstable {
+  border-left:   0.2em solid var(--rider-grid-margin);
+  border-top:    0.2em solid var(--rider-grid-margin);
+  border-bottom: 0.2em solid var(--rider-grid-margin);
+}
+.sstable-brdr-right {
+  border-right:  0.2em solid var(--rider-grid-margin);
+}
+.sstable tr {
+  line-height: 1.6;
+}
+.sstable th, td {
+  border: 0.1px solid var(--grid-bgcolor);
+  vertical-align: top;
+  font-size: 0.875em;;
+  padding-left: 5px;
+}
+.col-small {
+  width: 1.5em;
+  text-align: center;
+}
+.col-med {
+  width: 3em;
+}
+.col-large {
+  width: 12em;
+}
+/*#endregion*/
+
+/*#region Import/Export */
+#export-text, #import-text {
+  width: 75%;
+  border: 5px var(--rider-grid-margin) solid;
+  padding: 10px;
+  height: 150px;
+}
+/*#endregion*/
+
+/*#region Print */
+.print-container-header {
+  display: grid;
+  grid-template-areas:
+    'phhtno phrnum phrider phns phgate phsubnum phsubrider phpts phnf phscr phtot'    
+    ;
+  grid-template-columns: 2fr 1fr 10fr 1fr 1fr 1fr 10fr 1fr 1fr 2fr 2fr;
+  grid-gap: 2px;
+  background-color: black;
+  padding: 2px;
+  margin-bottom: 2px;
+}
+.phhtno {grid-area: phhtno;}
+.phrnum {grid-area: phrnum;}
+.phrider {grid-area: phrider;}
+.phns {grid-area: phns;}
+.phgate {grid-area: phgate;}
+.phsubnum {grid-area: phsubnum;}
+.phsubrider {grid-area: phsubrider;}
+.phpts {grid-area: phpts;}
+.phnf {grid-area: phnf;}
+.phscr {grid-area: phscr;}
+.phtot {grid-area: phtot;}
+
+.phhtno, .phrnum, .phrider, .phns, .phgate, .phsubnum, .phsubrider, .phpts, 
+  .phnf, .phscr, .phtot, .phhscr, .phhtot {
+  text-align: center;
+  font-size: 0.625em;
+  padding-top: 0.1em;
+  background-color: white;
+}
+
+.print-container {
+  display: grid;
+  grid-template-areas:
+    'prhtno prnum1 prider1 pns1 pgate1 psubnum1 psubrider1 ppts1 pnf1 phscr pascr'
+    'prhtno prnum2 prider2 pns2 pgate2 psubnum2 psubrider2 ppts2 pnf2 phscr pascr'
+    'prtime prnum3 prider3 pns3 pgate3 psubnum3 psubrider3 ppts3 pnf3 phtot patot'
+    'prtime prnum4 prider4 pns4 pgate4 psubnum4 psubrider4 ppts4 pnf4 phtot patot'
+    ;
+  grid-template-columns: 2fr 1fr 10fr 1fr 1fr 1fr 10fr 1fr 1fr 2fr 2fr;
+  grid-gap: 2px;
+  background-color: black;
+  padding: 2px;
+}
+.prhtno {grid-area: prhtno;}
+.prtime {grid-area: prtime;}
+.prnum1 {grid-area: prnum1;}
+.prider1 {grid-area: prider1;}
+.pns1 {grid-area: pns1;}
+.pgate1 {grid-area: pgate1;}
+.psubnum1 {grid-area: psubnum1;}
+.psubrider1 {grid-area: psubrider1;}
+.ppts1 {grid-area: ppts1;}
+.pnf1 {grid-area: pnf1;}
+.prnum2 {grid-area: prnum2;}
+.prider2 {grid-area: prider2;}
+.pns2 {grid-area: pns2;}
+.pgate2 {grid-area: pgate2;}
+.psubnum2 {grid-area: psubnum2;}
+.psubrider2 {grid-area: psubrider2;}
+.ppts2 {grid-area: ppts2;}
+.pnf2 {grid-area: pnf2;}
+.phscr {grid-area: phscr;}
+.phtot {grid-area: phtot;}
+.pascr {grid-area: pascr;}
+.patot {grid-area: patot;}
+.prhtno, .prnum1, .prider1, .pns1, .pgate1, .psubnum1, .psubrider1, .ppts1, .pnf1, .phscr, .phtot,
+         .prnum2, .prider2, .pns2, .pgate2, .psubnum2, .psubrider2, .ppts2, .pnf2,
+.prtime, .prnum3, .prider3, .pns3, .pgate3, .psubnum3, .psubrider3, .ppts3, .pnf3, .pascr, .patot,
+         .prnum4, .prider4, .pns4, .pgate4, .psubnum4, .psubrider4, .ppts4, .pnf4  {
+  text-align: center;
+  font-size: 0.625em;
+  padding-top: 0.1em;
+  background-color: white;
+}
+.prhtno {
+  font-size: 1.0em;
+}
+.phtot, .patot {
+  font-size: 1.0em;
+  font-weight: bold;
+}
+.phscr, .pascr {
+  font-size: 1.0em;
+}
+.prider1, .prider2, .prider3, .prider4, .psubrider1, .psubrider2, .psubrider3, .psubrider4 {
+  text-align: left;
+  padding-left: 5px;
+}
+.prnum1, .prider1, .pns1, .ppts1, .pgate1, .psubnum1, .psubrider1 {background-color: var(--rider1-pr-color);}
+.prnum2, .prider2, .pns2, .ppts2, .pgate2, .psubnum2, .psubrider2 {background-color: var(--rider2-pr-color);}
+.prnum3, .prider3, .pns3, .ppts3, .pgate3, .psubnum3, .psubrider3 {background-color: var(--rider3-pr-color);}
+.prnum4, .prider4, .pns4, .ppts4, .pgate4, .psubnum4, .psubrider4 {background-color: var(--rider4-pr-color);}
+.prtime {font-size: 0.625em;}
+#prsource {
+  display: none;
+}
+table#homeTeam1 td {
+  font-size: 0.625em;
+}
+table#awayTeam1 td {
+  font-size: 0.625em;
+}
+
+/*#endregion*/
+
+/*#region Subs */
+#subid1, #subid2, #subid3, #subid4, #redrsn, #bluersn, #whitersn, #yellrsn
+ {
+  font-size: 1.5em;
+}
+/*#endregion*/
+
+/*#region Setup */
+#gate1, #gate2 {
+  font-size: 1.25em;
+}
+label {
+  font-size: 1.25em;
+}
+/*#endregion*/
+

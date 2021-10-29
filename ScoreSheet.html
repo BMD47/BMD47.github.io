@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Speedway Scoresheet</title>
+  <link type="text/css" rel="stylesheet" href="ScoreSheet.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<!--! ------------------------------------------------------------------------>
+  <header class="header">
+    <nav class="navbar">
+        <span>
+          <a href="#" class="nav-logo">Scoresheet</a>
+          <img src="srider.jpg" alt="">
+        </span>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="menu('setup')">Setup</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="menu('meeting')">Meeting</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" onclick="menu('riders')">Riders</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="printss()">Print</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="exportSS()">Save/Load</a>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>    
+  </header>
+<!--! ------------------------------------------------------------------------>
+  <section class="sect" id="setup">
+    <br>
+    <form class="date">Date <input type="date" class="teams" id="matchdt"></form>
+    <br><br>
+    <div class="selteams">
+      <div>
+        <h3>Home Team</h3><br>
+        <select id = "hometeamx" class="teamss" onchange="selectTeam('home')"></select>
+        <br><br>
+        <form id="frmhx">
+          <span class="teams">1:</span> 
+            <input type="text" class="teams" id="frmhx1"><br>
+          <span class="teams">2:</span> 
+            <input type="text" class="teams" id="frmhx2"><br>
+          <span class="teams">3:</span> 
+            <input type="text" class="teams" id="frmhx3"><br>
+          <span class="teams">4:</span> 
+            <input type="text" class="teams" id="frmhx4"><br>
+          <span class="teams">5:</span> 
+            <input type="text" class="teams" id="frmhx5"><br>
+          <span class="teams">6:</span> 
+            <input type="text" class="teams" id="frmhx6"><br>
+          <span class="teams">7:</span> 
+            <input type="text" class="teams" id="frmhx7"><br>
+          <input type="text" style="display: none;" id="frmhx0">
+        </form>
+      </div>
+      <div>
+        <h3>Away Team</h3><br>
+        <select id = "awayteamx" class="teamss" onchange="selectTeam('away')"></select>
+        <br><br>
+        <form id="frmhx">
+          <span class="teams">1:</span> 
+            <input type="text" class="teams" id="frmax1"><br>
+          <span class="teams">2:</span> 
+            <input type="text" class="teams" id="frmax2"><br>
+          <span class="teams">3:</span> 
+            <input type="text" class="teams" id="frmax3"><br>
+          <span class="teams">4:</span> 
+            <input type="text" class="teams" id="frmax4"><br>
+          <span class="teams">5:</span> 
+            <input type="text" class="teams" id="frmax5"><br>
+          <span class="teams">6:</span> 
+            <input type="text" class="teams" id="frmax6"><br>
+          <span class="teams">7:</span> 
+            <input type="text" class="teams" id="frmax7"><br>
+          <input type="text" style="display: none;" id="frmax0">
+          <br><br>
+        </form>
+      </div>
+    </div>  
+    <button class="green button-menu" onclick="newMeeting()">OK</button>    
+    <br><br>
+    <h3>Gates</h3>
+    <input type="radio" id="gate1" name="gates" value="0">
+    <label for="gate1">Home</label><br>
+    <input type="radio" id="gate2" name="gates" value="1">
+    <label for="gate2">Away</label><br> 
+    <button class="green button-menu" onclick="setGates()">Set gates</button>
+    <br><br>
+  </section>
+<!--! ------------------------------------------------------------------------> 
+  <section class="sect" id="meeting">
+    <h2 id="mtgTitle">Meeting</h2>
+    <h2 id="mtgTitle2">Meeting</h2><br>
+    <div id="heatbtns"></div><br>
+    <div class="heat-container-header">
+      <div class="hhtno">Ht</div>
+      <div class="hrnum">No</div> 
+      <div class="hrider">Rider</div> 
+      <div class="hgate">Gt</div>
+      <div class="hpts">Pts</div>
+      <div class="hhscr">Score</div>
+      <div class="hhtot">Total</div>
+    </div>
+    <div class="heat-container" id="source">
+      <div class="htno">{htno}</div>
+      <div class="time">{httime}</div>
+      <div class="rnum1">{rn1}</div> 
+      <div class="rider1">{rdr1}</div> 
+      <div class="rnum2">{rn2}</div> 
+      <div class="rider2">{rdr2}</div>
+      <div class="rnum3">{rn3}</div>
+      <div class="rider3">{rdr3}</div>
+      <div class="rnum4">{rn4}</div>
+      <div class="rider4">{rdr4}</div>
+      <div class="gate1">{gt1}</div>
+      <div class="gate2">{gt2}</div>
+      <div class="gate3">{gt3}</div>
+      <div class="gate4">{gt4}</div>
+      <div class="pts1">{pts1}</div>
+      <div class="pts2">{pts2}</div>
+      <div class="pts3">{pts3}</div>
+      <div class="pts4">{pts4}</div>
+      <div class="hscr">{hscr}</div>
+      <div class="ascr">{ascr}</div>
+      <div class="htot">{htot}</div>
+      <div class="atot">{atot}</div>
+    </div>
+    <div id="destination"></div>
+  </section>
+<!--! ------------------------------------------------------------------------> 
+  <section class="sect" id="print">
+    <h3 id='pr-title'></h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px;">
+      <table id="homeTeam1" class="sstable sstable-brdr-right"></table>
+      <table id="awayTeam1" class="sstable sstable-brdr-right"></table>
+    </div>  
+    <br>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px;">
+      <div class="print-container-header">
+        <div class="phhtno">Ht</div>
+        <div class="phrnum"></div> 
+        <div class="phrider">Rider</div>
+        <div class="phns">NS</div> 
+        <div class="phgate">Gt</div>
+        <div class="phsubnum"></div> 
+        <div class="phsubrider">Substitute</div>
+        <div class="phpts">Pts</div>
+        <div class="phnf">NF</div>
+        <div class="phhscr">Hm</div>
+        <div class="phhtot">Aw</div>
+      </div>
+      <div class="print-container-header">
+        <div class="phhtno">Ht</div>
+        <div class="phrnum"></div> 
+        <div class="phrider">Rider</div>
+        <div class="phns">NS</div> 
+        <div class="phgate">Gt</div>
+        <div class="phsubnum"></div> 
+        <div class="phsubrider">Substitute</div>
+        <div class="phpts">Pts</div>
+        <div class="phnf">NF</div>
+        <div class="phhscr">Hm</div>
+        <div class="phhtot">Aw</div>
+      </div>
+    </div>
+    <div class="print-container" id="prsource">
+      <div class="prhtno">{htno}</div>
+      <div class="prtime">{httime}</div>
+      <div class="prnum1">{rn1}</div> 
+      <div class="prider1">{rdr1}</div> 
+      <div class="pns1">{ns1}</div>
+      <div class="pgate1">{gt1}</div>
+      <div class="psubnum1">{subnum1}</div>
+      <div class="psubrider1">{sub1}</div>
+      <div class="ppts1">{pts1}</div>
+      <div class="pnf1">{nf1}</div>
+      <div class="prnum2">{rn2}</div> 
+      <div class="prider2">{rdr2}</div>
+      <div class="pns2">{ns2}</div>
+      <div class="pgate2">{gt2}</div>
+      <div class="psubnum2">{subnum2}</div>
+      <div class="psubrider2">{sub2}</div>
+      <div class="ppts2">{pts2}</div>
+      <div class="pnf2">{nf2}</div>
+      <div class="prnum3">{rn3}</div>
+      <div class="prider3">{rdr3}</div>
+      <div class="pns3">{ns3}</div>
+      <div class="pgate3">{gt3}</div>
+      <div class="psubnum3">{subnum3}</div>
+      <div class="psubrider3">{sub3}</div>
+      <div class="ppts3">{pts3}</div>
+      <div class="pnf3">{nf3}</div>
+      <div class="prnum4">{rn4}</div>
+      <div class="prider4">{rdr4}</div>
+      <div class="pns4">{ns4}</div>
+      <div class="pgate4">{gt4}</div>
+      <div class="psubnum4">{subnum4}</div>
+      <div class="psubrider4">{sub4}</div>
+      <div class="ppts4">{pts4}</div>
+      <div class="pnf4">{nf4}</div>
+      <div class="phscr">{hscr}</div>
+      <div class="pascr">{ascr}</div>
+      <div class="phtot">{htot}</div>
+      <div class="patot">{atot}</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px;">
+      <div id="dest1"></div>
+      <div id="dest2"></div>
+    </div>
+  </section>
+<!--! ------------------------------------------------------------------------> 
+  <section class="sect" id="save">
+    <!------------------------------------------------------------------------------------------------->  
+      <h2>Export</h2>
+      <button class="blue button-menu" onclick="copyClip()"> 
+        Copy to clipboard
+      </button><br><br>
+      <textarea id="export-text" ></textarea>
+      <br>
+      <button class="blue button-menu" onClick="sendEmail()">Reply</button>
+      <br><br>
+      <h2>Import</h2>
+      Copy from the text file and paste here.<br><br>
+      <textarea rows="4" cols="50" id="import-text"></textarea><br>
+      <button onclick="importSS();" class="green button-menu">Import</button>
+    
+  </section> 
+<!--! ------------------------------------------------------------------------>  
+  <section class="sect" id="menuheat">
+    <br><hr><br>
+    <h2>Heat <span id="heatnumber">1</span></h2>  
+    
+    <div class="htheat-scores">
+      <div class="hthscr" id="hthscr"></div>
+      <div class="htascr" id="htascr"></div>
+      <div class="hthtot" id="hthtot"></div>
+      <div class="htatot" id="htatot"></div>
+    </div>
+    <button onclick="subs();" class="blue button-menu ">Subs</button>
+    <div class="htheat-container" id="htsource">
+      <div class="htrnum1" id="htnr1">{rn1}</div> 
+      <div class="htrnum2" id="htnr2">{rn2}</div>
+      <div class="htrnum3" id="htnr3">{rn3}</div>
+      <div class="htrnum4" id="htnr4">{rn4}</div>
+
+      <div class="htrider1" id="htrdr1">{rdr1}</div>
+      <div class="htrider2" id="htrdr2">{rdr2}</div> 
+      <div class="htrider3" id="htrdr3">{rdr3}</div>
+      <div class="htrider4" id="htrdr4">{rdr4}</div>
+
+      <div class="htpts1" id="htpts1">0</div>
+      <div class="htpts2" id="htpts2">0</div>
+      <div class="htpts3" id="htpts3">0</div>
+      <div class="htpts4" id="htpts4">0</div>   
+    </div>
+    <button onclick="htscore(1)" class="ht-button1 button-menu" id="id-button1">
+      R</button>
+    <button onclick="htscore(2)" class="ht-button2 button-menu" id="id-button2">
+      B</button>
+    <button onclick="htscore(3)" class="ht-button3 button-menu" id="id-button3">
+      W</button>
+    <button onclick="htscore(4)" class="ht-button4 button-menu" id="id-button4">
+      Y</button><br>
+    <form id="httime">
+      <span class="rdrs">Time:</span> <input type="number" name="time"
+        value="62.00" step="0.01"><br>
+    </form>
+
+    <button onclick="storeHeat();" class="button-menu ">OK</button>
+    <button onclick="canHeat();" class="button-menu ">Cancel</button>
+  </section>
+<!--! ------------------------------------------------------------------------>  
+  <section class="sect" id="riders" style="display: flex;">
+    <h2>Riders</h2><br>
+    <div class="tm-setup">
+    <table id="homeTeam" class="sstable sstable-brdr-right"></table>
+    <table id="awayTeam" class="sstable sstable-brdr-right"></table>
+  </div>
+  </section>
+<!--! ------------------------------------------------------------------------>  
+  <section class="sect" id="subs">
+    <br><hr><br>
+    <div id="sr1">
+      <select name="redrsn" id="redrsn" class="red-light col-med">
+        <option value="TS">TS</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>
+        <option value="E ">E</option>
+        <option value="15">15</option>
+      </select>
+    </div><br>
+    <div id="sr2">
+      <select name="bluersn" id="bluersn" class="blue col-med">
+        <option value="TS">TS</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>
+        <option value="E ">E</option>
+        <option value="15">15</option>
+      </select>
+    </div><br>
+    <div id="sr3">
+      <select name="whitersn" id="whitersn" class="white col-med">
+        <option value="TS">TS</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>      
+        <option value="E ">E</option>
+        <option value="15">15</option>
+      </select>
+    </div><br>
+    <div id="sr4">
+      <select name="yellrsn" id="yellrsn" class="yellow col-med">
+        <option value="TS">TS</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>      
+        <option value="E ">E</option>
+        <option value="15">15</option>
+      </select>
+    </div>
+    <br><br>
+
+  <button onclick="updatesubs();" class="green button-menu">OK</button>
+  </section>
+<!--! ------------------------------------------------------------------------> 
+
+  <script type="text/javascript" src="riders.js"></script>
+  <script type="text/javascript" src="ScoreSheet.js"></script>
+</body>
+
+</html>
