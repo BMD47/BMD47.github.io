@@ -20,7 +20,6 @@
 /*#endregion*/
 
 /*#region Reset */
-/*#endregion*/
 /* Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property */
 *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
   all: unset;
@@ -53,11 +52,14 @@ table {
 textarea {
   white-space: revert;
 }
+/*#endregion*/
+
 /*#region General */
 * {
   margin: 0;
   padding: 0;
   font-size: calc(10px + 0.7vw);
+  background-color: #eeeded;
 }
 
 a {
@@ -65,6 +67,10 @@ a {
 }
 h2 {
   font-size: 1.25rem;
+}
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 input[type="radio"]  {
   -webkit-appearance: none;
@@ -170,20 +176,27 @@ input[type="radio"]:checked {
 .teams {
   padding: 5px;
   border: solid 1px var(--rider-grid-margin);
+  font-size: 1.25em;
 }
 .teamss {
   padding: 5px;
   margin-left: 1.5em;
   border: solid 1px var(--rider-grid-margin);
+  font-size: 1.25em;
 }
 .teamss:hover {
-  background-color: rgba(var(--rider-grid-margin-rgb), 0.25);
-  opacity: 0.5;
+  background-color: rgba(var(--rider-grid-margin-rgb), 0.1);
+  opacity: 0.75;
 }
 .selteams {
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+@media only screen and (max-width: 850px) {
+  .selteams {
+    flex-direction: column;
+  }
 }
 .sect {
   margin-left: 10px;
@@ -271,13 +284,17 @@ input[type="radio"]:checked {
   font-weight: bold;
   padding-top: 0.5em;
   background-color: var(--gen-bgcolor);
-}    
+}  
+.httime {
+  font-size: 1.25em;
+}  
 /*#endregion*/
 
 /*#region Main Scoresheet */
 .button-menu {
   font-size: 1.25em;
   border-radius: 12px;
+  border: 1px solid black;
   margin: 10px;
   padding: 10px;
   background-color: var(--button-bgcolor);
