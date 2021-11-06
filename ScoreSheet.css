@@ -13,6 +13,8 @@
   --rider-grid-margin-rgb: 255,0,0;
 
   --button-bgcolor: rgb(131, 251, 151);  
+  --button-dk-bgcolor: rgb(35, 83, 43); 
+  --button-can-bgcolor: rgb(251, 160, 164); 
   --grid-bgcolor: black;
   --gen-bgcolor: white;
   --hdr-bord-bot: grey;
@@ -60,6 +62,11 @@ textarea {
   padding: 0;
   font-size: calc(10px + 0.7vw);
   background-color: #eeeded;
+}
+@media print {
+  * {
+    background-color: white;
+  }
 }
 
 a {
@@ -291,18 +298,6 @@ input[type="radio"]:checked {
 /*#endregion*/
 
 /*#region Main Scoresheet */
-.button-menu {
-  font-size: 1.25em;
-  border-radius: 12px;
-  border: 1px solid black;
-  margin: 10px;
-  padding: 10px;
-  background-color: var(--button-bgcolor);
-  cursor: pointer;
-}
-.button-menu:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.54), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 .ht-button1 {background-color: var(--rider1-color);} 
 .ht-button2 {background-color: var(--rider2-color);}
 .ht-button3 {background-color: var(--rider3-color);}
@@ -342,7 +337,7 @@ input[type="radio"]:checked {
   grid-template-areas:
     'hhtno hrnum hgate hrider hpts hhscr hhtot'
     ;
-  grid-template-columns: 2fr 1fr 1fr 10fr  1fr 2fr 2fr;
+  grid-template-columns: 2fr 1fr 1fr 8fr 1fr 1.2fr 1.2fr;
   grid-gap: 5px;
   background-color: var(--grid-bgcolor);
   padding: 5px;
@@ -352,12 +347,27 @@ input[type="radio"]:checked {
 .heat-container {
   display: grid;
   grid-template-areas:
-    'htno rnum1 gate1 rider1  pts1 hscr htot'
-    'htno rnum2 gate2 rider2  pts2 hscr htot'
-    'time rnum3 gate3 rider3  pts3 ascr atot'
-    'time rnum4 gate4 rider4  pts4 ascr atot'
+    'htno rnum1 gate1 rider1  pts1 hscr ascr'
+    'htno rnum2 gate2 rider2  pts2 hscr ascr'
+    'time rnum3 gate3 rider3  pts3 htot atot'
+    'time rnum4 gate4 rider4  pts4 htot atot'
     ;
-  grid-template-columns: 2fr 1fr 1fr 10fr  1fr 2fr 2fr;
+  grid-template-columns: 2fr 1fr 1fr 8fr  1fr 1.2fr 1.2fr;
+  grid-gap: 5px;
+  background-color: var(--grid-bgcolor);
+  padding: 5px;
+  max-width: 900px;
+  margin-bottom: 10px;
+}
+.heat-container1 {
+  display: grid;
+  grid-template-areas:
+    'rnum1 gate1 rider1 pts1'
+    'rnum2 gate2 rider2 pts2'
+    'rnum3 gate3 rider3 pts3'
+    'rnum4 gate4 rider4 pts4'
+    ;
+  grid-template-columns: 1fr 1fr 10fr 1fr;
   grid-gap: 5px;
   background-color: var(--grid-bgcolor);
   padding: 5px;
@@ -580,3 +590,50 @@ label {
 }
 /*#endregion*/
 
+/*#region Buttons */
+.button-menu {
+  font-size: 1.25em;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--button-bgcolor);
+  cursor: pointer;
+}
+.button-menu:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.54), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.button-can {
+  background-color: var(--button-can-bgcolor);
+}
+.helmet-button {
+  background-color: transparent;
+}
+.helmet-button1 {
+  background-color: gray;
+}
+.pushable {
+  background: var(--button-dk-bgcolor);
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  margin: 5px;
+}
+.front {
+  display: block;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: var(--button-bgcolor);
+  transform: translateY(-6px);
+  transition: transform 250ms;
+}
+.pushable:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.54), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+/*#endregion*/

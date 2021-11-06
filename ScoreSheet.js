@@ -20,6 +20,7 @@ for (let index = 0; index < 17; index++) {
 let htot = 0;
 let atot = 0;
 let rowcount = 1;
+let points = 3;
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
 
@@ -60,8 +61,8 @@ function buildSS() {
   loadSS();
   var html = "";
   for (let index = 1; index < 16; index++) {
-    html += '<button class="button-menu" id="heatn' + index + 
-      '" onclick="heat(' + index + ')">' + index + '</button>';
+    html += '<button class="pushable"' + 
+      '" onclick="heat(' + index + ')"><span class="front" id="heatn' + index + '">' + index + '</span></button>';
   }
   document.getElementById("heatbtns").innerHTML = html;
   for (let index = 1; index < 16; index++) { 
@@ -291,13 +292,14 @@ function htscore(rider) {
   document.getElementById(scr).innerHTML = hscr;
   hscr = Number(document.getElementById(tot).innerHTML) + points;
   document.getElementById(tot).innerHTML = hscr;
-  document.getElementById("id-button" + rider).style.opacity = 0.5;
+  document.getElementById("id-button" + rider).style.opacity = 0.2;
   points = points - 1;
 }
 function storeHeat() {
   let nn = Number(sspoints[0]) * 4 - 3;
-  for (let index = nn; index < nn+5; index++) {
+  for (let index = 1; index < 5; index++) {
     sspoints[nn] = document.getElementById("htpts" + index).innerHTML;
+    nn++;
   };  
   localStorage.setItem("points", JSON.stringify(sspoints));
   var htt = document.getElementById("httime");
