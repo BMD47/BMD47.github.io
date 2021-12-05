@@ -16,9 +16,21 @@
   --button-dk-bgcolor: rgb(35, 83, 43); 
   --button-can-bgcolor: rgb(251, 160, 164); 
   --grid-bgcolor: black;
-  --gen-bgcolor: white;
+  --gen-bgcolor: #eeeded;
   --hdr-bord-bot: grey;
+  --gen-color: #444444;
 }
+[data-theme="dark"] {  
+  --gen-bgcolor: #161625;  
+  --gen-color: #eeeded;
+  --grid-bgcolor:#eeeded;
+  --button-dk-bgcolor: rgb(26, 58, 30); 
+  --rider1-color: rgb(146, 49, 49);
+  --rider2-color: rgb(66, 66, 105);
+  --rider3-color: rgb(204, 204, 204);
+  --rider4-color: rgb(182, 182, 45);
+}
+
 /*#endregion*/
 
 /*#region Reset */
@@ -61,7 +73,8 @@ textarea {
   margin: 0;
   padding: 0;
   font-size: calc(10px + 0.7vw);
-  background-color: #eeeded;
+  background-color: var(--gen-bgcolor);
+  color: var(--gen-color);
 }
 @media print {
   * {
@@ -74,6 +87,8 @@ a {
 }
 h2 {
   font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
 }
 h3 {
   font-size: 1.25rem;
@@ -101,6 +116,9 @@ input[type="radio"]:checked {
 /*#region Header Navigation */
 .header{
   border-bottom: 1px solid var(--hdr-bord-bot);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media print {
   .header {
@@ -133,7 +151,7 @@ input[type="radio"]:checked {
 
 .nav-link{
   font-size: 1.25rem;
-  color: #000;
+  color: var(--gen-color);
   cursor: pointer;
 }
 .nav-link:hover{
@@ -198,12 +216,16 @@ input[type="radio"]:checked {
 .selteams {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  column-gap: 40px;
+  justify-content: center;
 }
 @media only screen and (max-width: 850px) {
   .selteams {
     flex-direction: column;
   }
+}
+.selteams-h3 {
+  margin-left: 40px;
 }
 .sect {
   margin-left: 10px;
@@ -298,6 +320,16 @@ input[type="radio"]:checked {
 /*#endregion*/
 
 /*#region Main Scoresheet */
+#meeting {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#heatbtns {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 .ht-button1 {background-color: var(--rider1-color);} 
 .ht-button2 {background-color: var(--rider2-color);}
 .ht-button3 {background-color: var(--rider3-color);}
@@ -375,24 +407,28 @@ input[type="radio"]:checked {
   margin-bottom: 10px;
 }
 .rider1 {
-  background-image: linear-gradient(to right, white, var(--rider1-color));
+  background-image: linear-gradient(to right, var(--gen-bgcolor), var(--rider1-color));
   text-align: left;
   padding-left: 10px;
+  color: var(--gen-color);
 }
 .rider2 {
-  background-image: linear-gradient(to right, white, var(--rider2-color));
+  background-image: linear-gradient(to right, var(--gen-bgcolor), var(--rider2-color));
   text-align: left;
   padding-left: 10px;
+  color: var(--gen-color);
 }
 .rider3 {
-  background-image: linear-gradient(to right, white, var(--rider3-color));
+  background-image: linear-gradient(to right, var(--gen-bgcolor), var(--rider3-color));
   text-align: left;
   padding-left: 10px;
+  color: var(--gen-color);
 }
 .rider4 {
-  background-image: linear-gradient(to right, white, var(--rider4-color));
+  background-image: linear-gradient(to right, var(--gen-bgcolor), var(--rider4-color));
   text-align: left;
   padding-left: 10px;
+  color: var(--gen-color);
 }
 .htno, .htot, .atot {
   text-align: center;
@@ -410,14 +446,34 @@ input[type="radio"]:checked {
 .time {
   font-size: 1.25em;
 }
-.rnum1, .pts1, .gate1 {background-color: var(--rider1-color); text-align: center;}
-.rnum2, .pts2, .gate2 {background-color: var(--rider2-color); text-align: center;}
-.rnum3, .pts3, .gate3 {background-color: var(--rider3-color); text-align: center;}
-.rnum4, .pts4, .gate4 {background-color: var(--rider4-color); text-align: center;}
-.pts1, .pts2, .pts3, .pts4 {font-weight: bold;}
-.gate1, .gate2, .gate3, .gate4 {font-style: italic;}
-.hhtno, .hrnum, .hgate, .hrider,  .hpts, .hhscr, .hhtot 
-  {background-color: white; text-align: center;}
+.rnum1, .pts1, .gate1 {
+  background-color: var(--rider1-color); 
+  text-align: center;
+}
+.rnum2, .pts2, .gate2 {
+  background-color: var(--rider2-color); 
+  text-align: center;
+}
+.rnum3, .pts3, .gate3 {
+  background-color: var(--rider3-color); 
+  text-align: center;
+  color: black;
+}
+.rnum4, .pts4, .gate4 {
+  background-color: var(--rider4-color); 
+  text-align: center;
+  color: black;
+}
+.pts1, .pts2, .pts3, .pts4 {
+  font-weight: bold;
+}
+.gate1, .gate2, .gate3, .gate4 {
+  font-style: italic;
+}
+.hhtno, .hrnum, .hgate, .hrider,  .hpts, .hhscr, .hhtot {
+  background-color: var(--gen-bgcolor); 
+  text-align: center;
+}
 #source {
   display: none;
 }
@@ -591,6 +647,11 @@ table#awayTeam1 td {
 label {
   font-size: 1.25em;
 }
+.form-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /*#endregion*/
 
 /*#region Buttons */
@@ -634,6 +695,7 @@ label {
   background: var(--button-bgcolor);
   transform: translateY(-6px);
   transition: transform 250ms;
+  color: black;
 }
 .pushable:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.54), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -642,6 +704,71 @@ label {
   transform: translateY(-2px);
 }
 /*#endregion*/
+
+/*#region Toggle switch */
+
+/*Simple css to style it like a toggle switch*/
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-switch-wrapper em {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/*#endregion*/
+
+
+
 
 .txtover { 
   position:relative; 

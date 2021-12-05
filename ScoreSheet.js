@@ -23,6 +23,14 @@ let rowcount = 1;
 let points = 3;
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
 
 nav();
 genSetup();
@@ -50,9 +58,7 @@ function buildSS() {
   var newdate = new Date (sstimes[0]);
   document.getElementById("mtgTitle").innerHTML = 
     newdate.toLocaleDateString("default", options);
-  document.getElementById("mtgTitle2").innerHTML =
-    homeTeam[0] + ' (' + htot + ') v ' +
-    awayTeam[0] + ' (' + atot + ')';
+  
   var source = document.getElementById("source");
   var destination = document.getElementById("destination");
   let clone = source.outerHTML;
@@ -126,6 +132,9 @@ function buildSS() {
     cloney += clonex;
   }
   destination.innerHTML = cloney;
+  document.getElementById("mtgTitle2").innerHTML =
+    homeTeam[0] + ' (' + htot + ') v ' +
+    awayTeam[0] + ' (' + atot + ')';
 }  
 
 // Mobile menu
@@ -200,6 +209,7 @@ function saveSS() {
   localStorage.setItem("points", JSON.stringify(sspoints));
   localStorage.setItem("subs", JSON.stringify(sssubs));
   localStorage.setItem("rsn", JSON.stringify(sssubsrsn));
+  localStorage.setItem('theme', currentTheme);
   console.log("Saved"); 
 }
 // Load from Local Storage
@@ -285,6 +295,7 @@ function heat(htno) {
 }
 // Heat result
 function htscore(rider) {
+  console.log(" points " + points);
   if (rider < 3)  {scr = "hthscr"; tot = "hthtot"}
   else            {scr = "htascr"; tot = "htatot"}
   document.getElementById("htpts" + rider).innerHTML =  points;
@@ -623,3 +634,18 @@ function sendEmail() {
   var emailBody = document.getElementById("export-text").innerHTML;
   document.location = "mailto:"+email+"?subject="+subject+"&body="+emailBody;
 }
+
+function switchTheme(e) {
+  if (e.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark'); //add this
+  }
+  else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light'); //add this
+  }    
+}
+
+
+
+toggleSwitch.addEventListener('change', switchTheme, false);

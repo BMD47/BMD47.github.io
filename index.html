@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-
 <body>
 <!--! Header  ---------------------------------------------------------------->
   <header class="header">
@@ -45,13 +44,21 @@
 <!--! Setup  ----------------------------------------------------------------->
   <section class="sect" id="setup">
     <br>
-    <form><span class="httime">Date</span> 
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider round"></div>
+      </label>
+      <em>Dark Mode</em>
+    </div>
+    <br>
+    <form class="form-center"><span class="httime">Date</span> 
       <input type="date" class="teams" id="matchdt">
     </form>
     <br><br>
     <div class="selteams">
       <div>
-        <h3>Home Team</h3><br>
+        <h3 class="selteams-h3">Home</h3><br>
         <select id = "hometeamx" class="teamss" onchange="selectTeam('home')"></select>
         <br><br>
         <form id="frmhx">
@@ -73,7 +80,7 @@
         </form>
       </div>
       <div>
-        <h3>Away Team</h3><br>
+        <h3 class="selteams-h3">Away</h3><br>
         <select id = "awayteamx" class="teamss" onchange="selectTeam('away')"></select>
         <br><br>
         <form id="frmhx">
@@ -96,18 +103,24 @@
         </form>
       </div>
     </div>   
-    <button class="pushable" onclick="newMeeting()">
-      <span class="front">OK</span>
-    </button>   
-    <br><br>
-    <h3>Gates</h3>
-    <input type="radio" id="gate1" name="gates" value="0">
-    <label for="gate1">Home</label><br>
-    <input type="radio" id="gate2" name="gates" value="1">
-    <label for="gate2">Away</label><br><br>
-    <button class="pushable" onclick="setGates()">
-      <span class="front">Set gates</span>
-    </button>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <div>
+        <button class="pushable" onclick="newMeeting()" >
+          <span class="front">OK</span>
+        </button>    
+        <br><br>
+      </div>
+      <div>
+        <h3>Gates</h3>
+        <input type="radio" id="gate1" name="gates" value="0">
+        <label for="gate1">Home</label><br>
+        <input type="radio" id="gate2" name="gates" value="1">
+        <label for="gate2">Away</label><br><br>
+        <button class="pushable" onclick="setGates()">
+          <span class="front">Set gates</span>
+        </button>
+      </div>
+    </div>
     <br><br>
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">
       Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">
@@ -278,25 +291,25 @@
       <div class="htpts3" id="htpts3">0</div>
       <div class="htpts4" id="htpts4">0</div>   
     </div>
-    <button class="txtover">
+    <button class="txtover" id="id-button1">
       <figure class="helmet-button button-menu" onclick="htscore(1)"> 
         <img src="red-helmet.png"> 
         <figcaption>R</figcaption> 
       </figure>
     </button>
-    <button class="txtover">
+    <button class="txtover" id="id-button2">
       <figure class="helmet-button button-menu" onclick="htscore(2)"> 
         <img src="blue-helmet.png"> 
         <figcaption>B</figcaption> 
       </figure>
     </button>
-    <button class="txtover">
+    <button class="txtover" id="id-button3">
       <figure class="helmet-button button-menu" onclick="htscore(3)"> 
         <img src="white-helmet.png"> 
         <figcaption>W</figcaption> 
       </figure>
     </button>
-    <button class="txtover">
+    <button class="txtover" id="id-button4">
       <figure class="helmet-button button-menu" onclick="htscore(4)"> 
         <img src="yellow-helmet.png"> 
         <figcaption>Y</figcaption> 
@@ -359,8 +372,8 @@
       </select>
     </div>
     <br><br>
-
-  <button onclick="updatesubs();" class="green button-menu">OK</button>
+    <button onclick="updatesubs();" class="green button-menu">OK</button>
+    <button onclick="canHeat();" class="button-can button-menu ">Cancel</button>
   </section>
 <!--! ------------------------------------------------------------------------> 
 
