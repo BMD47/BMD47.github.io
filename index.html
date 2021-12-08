@@ -130,7 +130,6 @@
   <section class="sect" id="meeting">
     <h2 id="mtgTitle">Meeting</h2>
     <h2 id="mtgTitle2">Meeting</h2><br>
-    <div id="heatbtns"></div><br>
     <div class="heat-container-header">
       <div class="hhtno">Ht</div>
       <div class="hrnum">No</div> 
@@ -141,7 +140,7 @@
       <div class="hhtot">Away</div>
     </div>
     <div class="heat-container" id="source">
-      <div class="htno">{htno}</div>
+      <div class="htno" id="hn{htno2}" onclick="heat({htno1})">{htno}</div>
       <div class="time">{httime}</div>
       <div class="rnum1">{rn1}</div> 
       <div class="rider1">{rdr1}</div> 
@@ -265,16 +264,18 @@
   </section> 
 <!--! ------------------------------------------------------------------------>  
   <section class="sect" id="menuheat">
-    <br><hr><br>
+    <br><hr>
     <h2>Heat <span id="heatnumber">1</span></h2>  
-    
+    <br>
     <div class="htheat-scores">
       <div class="hthscr" id="hthscr"></div>
       <div class="htascr" id="htascr"></div>
       <div class="hthtot" id="hthtot"></div>
       <div class="htatot" id="htatot"></div>
     </div>
-    <button onclick="subs();" class="blue button-menu ">Subs</button>
+    <div class="center">
+      <button onclick="subs();" class="button-menu">Subs</button>
+    </div>
     <div class="htheat-container" id="htsource">
       <div class="htrnum1" id="htnr1">{rn1}</div> 
       <div class="htrnum2" id="htnr2">{rn2}</div>
@@ -291,6 +292,7 @@
       <div class="htpts3" id="htpts3">0</div>
       <div class="htpts4" id="htpts4">0</div>   
     </div>
+    <div class="center">
     <button class="txtover" id="id-button1">
       <figure class="helmet-button button-menu" onclick="htscore(1)"> 
         <img src="red-helmet.png"> 
@@ -323,6 +325,7 @@
 
     <button onclick="storeHeat();" class="button-menu ">OK</button>
     <button onclick="canHeat();" class="button-can button-menu ">Cancel</button>
+  </div>
   </section>
 <!--! ------------------------------------------------------------------------>  
   <section class="sect" id="riders" style="display: flex;">

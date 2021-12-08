@@ -66,16 +66,14 @@ function buildSS() {
   rowcount = 1;
   loadSS();
   var html = "";
-  for (let index = 1; index < 16; index++) {
-    html += '<button class="pushable"' + 
-      '" onclick="heat(' + index + ')"><span class="front" id="heatn' + index + '">' + index + '</span></button>';
-  }
-  document.getElementById("heatbtns").innerHTML = html;
+  
   for (let index = 1; index < 16; index++) { 
     let hscr = 0;
     let ascr = 0;
     clonex = clone.replace(' id="source"', "");
     clonex = clonex.replace('{htno}', index);
+    clonex = clonex.replace('{htno1}', index);
+    clonex = clonex.replace('{htno2}', index);
     let rdrx = ( sssubs[rowcount] > 0 ) ? sssubs[rowcount] : getRider(rowcount);   
     for (let rn = 1; rn < 5; rn++) {
       xxx = "{rn" + rn + "}";
@@ -88,9 +86,7 @@ function buildSS() {
       console.log('sssubs ' + sssubs[0])
       clonex = clonex.replace(xxx, getGate(sssubs[0], rowcount));
       xxx = "{pts" + rn + "}";
-      if (index <= Number(sspoints[0])) {
-        document.getElementById("heatn" + index).style.backgroundColor = 
-          "lightgrey";        
+      if (index <= Number(sspoints[0])) {                  
         clonex = clonex.replace(xxx, sspoints[rowcount]); 
         let teamx = (rn < 3) ? "homeTeam" : "awayTeam";  
         let cell = Number(document.getElementById(teamx).rows[rdrxx].cells[11].innerHTML) + 2;
@@ -135,6 +131,13 @@ function buildSS() {
   document.getElementById("mtgTitle2").innerHTML =
     homeTeam[0] + ' (' + htot + ') v ' +
     awayTeam[0] + ' (' + atot + ')';
+  for (let index = 1; index < 16; index++) { 
+    if (index <= Number(sspoints[0])) {
+      document.getElementById("hn" + index).style.backgroundColor = 
+        "lightgrey";  
+      console.log("hn" + index)
+    }
+  }
 }  
 
 // Mobile menu
@@ -480,7 +483,7 @@ function copyClip() {
   copyText.select();
   document.execCommand("copy");
 }
-function printss() {
+function printss() {  
   genTeamTable("homeTeam1");
   genTeamTable("awayTeam1");
   // Get the source & destination elements
