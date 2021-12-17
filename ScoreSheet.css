@@ -19,6 +19,9 @@
   --gen-bgcolor: #eeeded;
   --hdr-bord-bot: grey;
   --gen-color: #444444;
+
+  --form-control-color: red;
+  --form-control-disabled: #959495;
 }
 [data-theme="dark"] {  
   --gen-bgcolor: #161625;  
@@ -26,7 +29,7 @@
   --grid-bgcolor:#eeeded;
   --button-dk-bgcolor: rgb(26, 58, 30); 
   --rider1-color: rgb(146, 49, 49);
-  --rider2-color: rgb(66, 66, 105);
+  --rider2-color: cyan;
   --rider3-color: rgb(204, 204, 204);
   --rider4-color: rgb(182, 182, 45);
 }
@@ -148,12 +151,14 @@ input[type="radio"]:checked {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 99;
 }
 
 .nav-link{
   font-size: 1.25rem;
   color: var(--gen-color);
   cursor: pointer;
+  margin-left: 1.5rem;
 }
 .nav-link:hover{
   color: var(--rider-grid-margin);
@@ -164,16 +169,14 @@ input[type="radio"]:checked {
   color: var(--rider-grid-margin);
   font-family: 'Segoe Print';
 }
-.nav-item {
-  padding-left: 1.5rem;
-}
+
 @media only screen and (max-width: 768px) {
   .nav-menu {
     position: fixed;
     left: -100%;
     top: 5rem;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--gen-bgcolor);
     width: 100%;
     border-radius: 10px;
     text-align: center;
@@ -183,17 +186,24 @@ input[type="radio"]:checked {
   .nav-menu.active {
       left: 0;
   }
-  .nav-item {
-      margin: 0.5rem 0;
-      
-  }
+  
   .nav-link {
     font-size: 1.75rem;
-      background-color: var(--button-bgcolor);
+    background-color: var(--button-bgcolor);
+    color: #161625;
+    margin-left: 0;
+    padding-left: 1.0rem;    
+    padding-right: 1.0rem; 
+    z-index: 99;
   }
   .hamburger {
       display: block;
       cursor: pointer;
+  }
+  .nav-item {
+    width: 150px;
+    background-color: var(--button-bgcolor);
+    margin-bottom: 5px;
   }
 }
 /*#endregion*/
@@ -311,11 +321,11 @@ input[type="radio"]:checked {
   text-align: center;
   font-size: 1.5em;
 }
-.htrider1, .htpts1, .htrnum1 {background-color: var(--rider1-color);}
-.htrider2, .htpts2, .htrnum2 {background-color: var(--rider2-color);}
-.htrider3, .htpts3, .htrnum3 {background-color: var(--rider3-color);}
-.htrider4, .htpts4, .htrnum4 {background-color: var(--rider4-color);}  
-.htrider3, .htpts3, .htrnum3, .htrider4, .htpts4, .htrnum4  {color: var(--gen-bgcolor);}
+.htrider1, .htpts1, .htrnum1 {background-color: var(--rider1-color); color: black;}
+.htrider2, .htpts2, .htrnum2 {background-color: var(--rider2-color); color: black;}
+.htrider3, .htpts3, .htrnum3 {background-color: var(--rider3-color); color: black;}
+.htrider4, .htpts4, .htrnum4 {background-color: var(--rider4-color); color: black;}  
+
  
 .hthtot, .htatot, .hthscr, .htascr {
   text-align: center;
@@ -468,6 +478,7 @@ input[type="radio"]:checked {
 .rnum2, .pts2, .gate2 {
   background-color: var(--rider2-color); 
   text-align: center;
+  color: black;
 }
 .rnum3, .pts3, .gate3 {
   background-color: var(--rider3-color); 
@@ -665,6 +676,7 @@ table#awayTeam1 td {
 #subid1, #subid2, #subid3, #subid4, #redrsn, #bluersn, #whitersn, #yellrsn
  {
   font-size: 1.5em;
+  color: black;
 }
 /*#endregion*/
 
@@ -704,7 +716,7 @@ label {
   margin: 5px;
 }
 .helmet-button1 {
-  background-color: gray;
+  background-color: white;
   margin: 5px;
 }
 .pushable {
@@ -734,67 +746,7 @@ label {
 }
 /*#endregion*/
 
-/*#region Toggle switch */
 
-/*Simple css to style it like a toggle switch*/
-.theme-switch-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.theme-switch-wrapper em {
-  margin-left: 10px;
-  font-size: 1rem;
-}
-.theme-switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
-}
-
-.theme-switch input {
-  display:none;
-}
-
-.slider {
-  background-color: #ccc;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: .4s;
-}
-
-.slider:before {
-  background-color: #fff;
-  bottom: 4px;
-  content: "";
-  height: 26px;
-  left: 4px;
-  position: absolute;
-  transition: .4s;
-  width: 26px;
-}
-
-input:checked + .slider {
-  background-color: #66bb6a;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-/*#endregion*/
 
 
 
@@ -808,7 +760,66 @@ input:checked + .slider:before {
   bottom:8px; 
   left:8px; 
   font-size: 1em;
+  color: black;
+  background-color: white;
 }
 #heatnumber {
   font-size: 1.25em;
+}
+
+
+.form-control {
+  font-size: 1.25rem;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
+
+.form-control + .form-control {
+  margin-top: 1em;
+}
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  z-index: 1;
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
 }

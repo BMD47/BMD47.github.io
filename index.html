@@ -44,13 +44,10 @@
 <!--! Setup  ----------------------------------------------------------------->
   <section class="sect" id="setup">
     <br>
-    <div class="theme-switch-wrapper">
-      <label class="theme-switch" for="checkbox">
-          <input type="checkbox" id="checkbox" />
-          <div class="slider round"></div>
-      </label>
-      <em>Dark Mode</em>
-    </div>
+    <label class="form-control form-center theme-switch">
+      <input type="checkbox" name="checkbox" />
+      Dark mode
+    </label>
     <br>
     <form class="form-center"><span class="httime">Date</span> 
       <input type="date" class="teams" id="matchdt">
@@ -121,7 +118,10 @@
         </button>
       </div>
     </div>
-    <br><br>
+    <br>
+    <br>
+    
+    <a href="https://www.vecteezy.com/free-vector/motorcycle-helmet">Motorcycle Helmet Vectors by Vecteezy</a>
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">
       Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">
         www.flaticon.com</a></div>
@@ -248,19 +248,23 @@
   </section>
 <!--! ------------------------------------------------------------------------> 
   <section class="sect" id="save">
-    <!------------------------------------------------------------------------------------------------->  
-      <h2>Export</h2>
-      <br>
+    <h2>Export</h2>
+    <br>      
+    <div class="center">
       <textarea id="export-text" ></textarea>
-      <br>
+    </div>      
+    <br>
+    <div class="center">
       <button class="button-menu" onclick="copyClip()">Copy to clipboard</button>
       <button class="button-menu" onClick="sendEmail()">Send email</button>
-      <br><br>
-      <h2>Import</h2>
+    </div>
+    <br><br>
+    <h2>Import</h2>
+    <div class="center">
       Copy from the text file and paste here.<br><br>
       <textarea rows="4" cols="50" id="import-text"></textarea><br>
       <button onclick="importSS();" class="button-menu">Import</button>
-    
+    </div>      
   </section> 
 <!--! ------------------------------------------------------------------------>  
   <section class="sect" id="menuheat">
@@ -294,26 +298,26 @@
     </div>
     <div class="center">
     <button class="txtover" id="id-button1">
-      <figure class="helmet-button button-menu" onclick="htscore(1)"> 
-        <img src="red-helmet.png"> 
+      <figure class="helmet-button1 button-menu" onclick="htscore(1)"> 
+        <img src="helmet_red.jpg"> 
         <figcaption>R</figcaption> 
       </figure>
     </button>
     <button class="txtover" id="id-button2">
-      <figure class="helmet-button button-menu" onclick="htscore(2)"> 
-        <img src="blue-helmet.png"> 
+      <figure class="helmet-button1 button-menu" onclick="htscore(2)"> 
+        <img src="helmet_blue.jpg"> 
         <figcaption>B</figcaption> 
       </figure>
     </button>
     <button class="txtover" id="id-button3">
-      <figure class="helmet-button button-menu" onclick="htscore(3)"> 
-        <img src="white-helmet.png"> 
+      <figure class="helmet-button1 button-menu" onclick="htscore(3)"> 
+        <img src="helmet_white.jpg"> 
         <figcaption>W</figcaption> 
       </figure>
     </button>
     <button class="txtover" id="id-button4">
-      <figure class="helmet-button button-menu" onclick="htscore(4)"> 
-        <img src="yellow-helmet.png"> 
+      <figure class="helmet-button1 button-menu" onclick="htscore(4)"> 
+        <img src="helmet_yellow.jpg"> 
         <figcaption>Y</figcaption> 
       </figure>
     </button>
@@ -338,7 +342,7 @@
 <!--! ------------------------------------------------------------------------>  
   <section class="sect" id="subs">
     <br><hr><br>
-    <div id="sr1">
+    <div id="sr1" class="center">
       <select name="redrsn" id="redrsn" class="red-light col-med">
         <option value="TS">TS</option>
         <option value="RR">RR</option>
@@ -347,7 +351,7 @@
         <option value="15">15</option>
       </select>
     </div><br>
-    <div id="sr2">
+    <div id="sr2" class="center">
       <select name="bluersn" id="bluersn" class="blue col-med">
         <option value="TS">TS</option>
         <option value="RR">RR</option>
@@ -356,7 +360,7 @@
         <option value="15">15</option>
       </select>
     </div><br>
-    <div id="sr3">
+    <div id="sr3" class="center">
       <select name="whitersn" id="whitersn" class="white col-med">
         <option value="TS">TS</option>
         <option value="RR">RR</option>
@@ -365,7 +369,7 @@
         <option value="15">15</option>
       </select>
     </div><br>
-    <div id="sr4">
+    <div id="sr4" class="center">
       <select name="yellrsn" id="yellrsn" class="yellow col-med">
         <option value="TS">TS</option>
         <option value="RR">RR</option>
@@ -375,8 +379,10 @@
       </select>
     </div>
     <br><br>
-    <button onclick="updatesubs();" class="green button-menu">OK</button>
-    <button onclick="canHeat();" class="button-can button-menu ">Cancel</button>
+    <div class="center">
+      <button onclick="updatesubs();" class="green button-menu">OK</button>
+      <button onclick="canHeat();" class="button-can button-menu ">Cancel</button>
+    </div>
   </section>
 <!--! ------------------------------------------------------------------------> 
 

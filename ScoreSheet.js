@@ -396,6 +396,7 @@ function genSub1(gateno) {
     selectList.appendChild(option);    
   }
   document.getElementById(subid).style.backgroundColor = colr[gateno - 1];
+  document.getElementById(subid).style.Color = "black";
   document.getElementById(subid).classList.add("col-large");
 }
 
